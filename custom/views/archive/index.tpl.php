@@ -35,78 +35,79 @@ header('Content-type: text/html; charset=UTF-8');
 <body>
     <div id="page">
         <?php include(__DIR__.'/top.tpl.php'); ?>
+        <div id="innerwrap">
+          <div id="content">
+              <?php if (0 == count($items)) :?>
+              <div class="article">
+                  <h2 class="article-title">
+                      <?=_g('No article')?>
+                  </h2>
+                  <p class="article-content"><?=_g('No news, good news.')?></p>
+              </div>
+              <?php endif; ?>
+              <?php if (count($today)): ?>
+              <div class="article">
+                  <h2><?=_g('Today')?></h2>
+                  <ul>
+                  <?php foreach ($today as $item): ?>
+                      <?php $feed = $item->get_feed(); ?>
+                      <li>
+                      <a href="<?php echo $feed->getWebsite() ?>" class="source"><?php echo $feed->getName() ?></a> :
+                      <a href="<?php echo $item->get_permalink(); ?>" title="<?=_g('Go to original place')?>"><?php echo $item->get_title(); ?></a>
+                      </li>
+                  <?php endforeach; ?>
+                  </ul>
+              </div>
+              <?php endif; ?>
 
-        <div id="content">
-            <?php if (0 == count($items)) :?>
-            <div class="article">
-                <h2 class="article-title">
-                    <?=_g('No article')?>
-                </h2>
-                <p class="article-content"><?=_g('No news, good news.')?></p>
-            </div>
-            <?php endif; ?>
-            <?php if (count($today)): ?>
-            <div class="article">
-                <h2><?=_g('Today')?></h2>
-                <ul>
-                <?php foreach ($today as $item): ?>
-                    <?php $feed = $item->get_feed(); ?>
-                    <li>
-                    <a href="<?php echo $feed->getWebsite() ?>" class="source"><?php echo $feed->getName() ?></a> :
-                    <a href="<?php echo $item->get_permalink(); ?>" title="<?=_g('Go to original place')?>"><?php echo $item->get_title(); ?></a>
-                    </li>
-                <?php endforeach; ?>
-                </ul>
-            </div>
-            <?php endif; ?>
+              <?php if (count($week)): ?>
+              <div class="article">
+                  <h2><?=_g('This week')?></h2>
+                  <ul>
+                  <?php foreach ($week as $item): ?>
+                      <?php $feed = $item->get_feed(); ?>
+                      <li>
+                      <a href="<?php echo $feed->getWebsite() ?>" class="source"><?php echo $feed->getName() ?></a> :
+                      <a href="<?php echo $item->get_permalink(); ?>" title="<?=_g('Go to original place')?>"><?php echo $item->get_title(); ?></a>
+                      </li>
+                  <?php endforeach; ?>
+                  </ul>
+              </div>
+              <?php endif; ?>
 
-            <?php if (count($week)): ?>
-            <div class="article">
-                <h2><?=_g('This week')?></h2>
-                <ul>
-                <?php foreach ($week as $item): ?>
-                    <?php $feed = $item->get_feed(); ?>
-                    <li>
-                    <a href="<?php echo $feed->getWebsite() ?>" class="source"><?php echo $feed->getName() ?></a> :
-                    <a href="<?php echo $item->get_permalink(); ?>" title="<?=_g('Go to original place')?>"><?php echo $item->get_title(); ?></a>
-                    </li>
-                <?php endforeach; ?>
-                </ul>
-            </div>
-            <?php endif; ?>
+              <?php if (count($month)): ?>
+              <div class="article">
+                  <h2><?=_g('This month')?></h2>
+                  <ul>
+                  <?php foreach ($month as $item): ?>
+                      <?php $feed = $item->get_feed(); ?>
+                      <li>
+                      <a href="<?php echo $feed->getWebsite() ?>" class="source"><?php echo $feed->getName() ?></a> :
+                      <a href="<?php echo $item->get_permalink(); ?>" title="<?=_g('Go to original place')?>"><?php echo $item->get_title(); ?></a>
+                      </li>
+                  <?php endforeach; ?>
+                  </ul>
+              </div>
+              <?php endif; ?>
 
-            <?php if (count($month)): ?>
-            <div class="article">
-                <h2><?=_g('This month')?></h2>
-                <ul>
-                <?php foreach ($month as $item): ?>
-                    <?php $feed = $item->get_feed(); ?>
-                    <li>
-                    <a href="<?php echo $feed->getWebsite() ?>" class="source"><?php echo $feed->getName() ?></a> :
-                    <a href="<?php echo $item->get_permalink(); ?>" title="<?=_g('Go to original place')?>"><?php echo $item->get_title(); ?></a>
-                    </li>
-                <?php endforeach; ?>
-                </ul>
-            </div>
-            <?php endif; ?>
+              <?php if (count($older)): ?>
+              <div class="article">
+                  <h2><?=_g('Older items')?></h2>
+                  <ul>
+                  <?php foreach ($older as $item): ?>
+                      <?php $feed = $item->get_feed(); ?>
+                      <li>
+                      <a href="<?php echo $feed->getWebsite() ?>" class="source"><?php echo $feed->getName() ?></a> :
+                      <a href="<?php echo $item->get_permalink(); ?>" title="Go to original place"><?php echo $item->get_title(); ?></a>
+                      </li>
+                  <?php endforeach; ?>
+                  </ul>
+              </div>
+              <?php endif; ?>
+          </div>
 
-            <?php if (count($older)): ?>
-            <div class="article">
-                <h2><?=_g('Older items')?></h2>
-                <ul>
-                <?php foreach ($older as $item): ?>
-                    <?php $feed = $item->get_feed(); ?>
-                    <li>
-                    <a href="<?php echo $feed->getWebsite() ?>" class="source"><?php echo $feed->getName() ?></a> :
-                    <a href="<?php echo $item->get_permalink(); ?>" title="Go to original place"><?php echo $item->get_title(); ?></a>
-                    </li>
-                <?php endforeach; ?>
-                </ul>
-            </div>
-            <?php endif; ?>
+          <?php include_once(__DIR__.'/sidebar.tpl.php'); ?>
         </div>
-
-        <?php include_once(__DIR__.'/sidebar.tpl.php'); ?>
 
         <?php include(__DIR__.'/footer.tpl.php'); ?>
     </div>

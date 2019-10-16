@@ -3,7 +3,7 @@ $all_people = $Planet->getPeople();
 usort($all_people, array('PlanetFeed', 'compare'));
 ?>
 <div id="sidebar">
-    <div id="sidebar-people">
+    <div id="sidebar-people" class="section">
         <h2><?=_g('People')?> (<?php echo count($all_people); ?>)</h2>
         <ul>
             <?php foreach ($all_people as $person) : ?>
@@ -18,14 +18,14 @@ usort($all_people, array('PlanetFeed', 'compare'));
         </p>
     </div>
 
-    <div>
+    <div class="section">
         <h2><?=_g('Syndicate')?></h2>
         <ul>
             <li><img src="custom/img/feed.png" alt="<?=_g('Feed')?>" height="12" width="12" />&nbsp;<a href="atom.php"><?=_g('Feed (ATOM)')?></a></li>
         </ul>
     </div>
 
-    <div>
+    <div class="section">
         <h2><?=_g('Archives')?></h2>
         <ul>
             <li><a href="?type=archive"><?=_g('See all headlines')?></a></li>
